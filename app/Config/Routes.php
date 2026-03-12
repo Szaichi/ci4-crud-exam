@@ -5,6 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
 $routes->get('/', function () {
     return redirect()->to('/login');
 });
@@ -29,3 +30,9 @@ $routes->get('/records/edit/(:num)','Records::edit/$1');
 $routes->post('/records/update/(:num)','Records::update/$1');
 
 $routes->get('/records/delete/(:num)','Records::delete/$1');
+
+$routes->get('/profile','ProfileController::show');
+
+$routes->get('/profile/edit','ProfileController::edit');
+
+$routes->post('/profile/update','ProfileController::update');

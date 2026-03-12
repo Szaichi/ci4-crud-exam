@@ -6,12 +6,34 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
+
     protected $table = 'users';
 
+    protected $primaryKey = 'id';
+
     protected $allowedFields = [
+
         'name',
         'email',
         'password',
-        'created_at'
+
+        'student_id',
+        'course',
+        'year_level',
+        'section',
+        'phone',
+        'address',
+
+        'profile_image',
+
+        'created_at',
+        'updated_at'
+
     ];
+
+    public function updateProfile(int $userId, array $data): bool
+    {
+        return $this->update($userId, $data);
+    }
+
 }

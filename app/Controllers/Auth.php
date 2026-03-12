@@ -25,7 +25,9 @@ class Auth extends BaseController
         }
 
         $model = new UserModel();
+
         $email = $this->request->getPost('email');
+
         $existing = $model->where('email', $email)->first();
 
         if ($existing) {
@@ -52,14 +54,17 @@ class Auth extends BaseController
     public function authenticate()
     {
         $model = new UserModel();
+
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+
         $user = $model->where('email', $email)->first();
 
         if ($user && password_verify($password, $user['password'])) {
+
             session()->set([
-                'id' => $user['id'],
-                'name' => $user['name'],
+                'id' => $user['id'],    
+                'name' => $user['name'],  
                 'logged_in' => true
             ]);
 
@@ -72,6 +77,7 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
+
         return redirect()->to('/login');
     }
 }
